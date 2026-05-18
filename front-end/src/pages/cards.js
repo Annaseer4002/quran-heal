@@ -1,6 +1,6 @@
 import ReadQuran from "../assets/Read.png"
-import ListenQuran from "../assets/Listen.png"
-import Books from "../assets/Books.png"
+import ListenQuran from "../assets/listen.png"
+import Books from "../assets/books.png"
 
 export default [
     {
