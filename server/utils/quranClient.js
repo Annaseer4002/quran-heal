@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://apis-prelive.quran.foundation/content/api/v4'
+const API_BASE_URL = 'https://apis.quran.foundation/content/api/v4'
+// const API_BASE_URL = 'https://apis-prelive.quran.foundation/content/api/v4'
 
 
 
 // Get OAuth2 access token from Quran Foundation
 async function getAccessToken() {
   try {
-    const authUrl = 'https://prelive-oauth2.quran.foundation/oauth2/token';
-    const credentials = Buffer.from(`${process.env.PRE_CLIENT_ID}:${process.env.PRE_CLIENT_SECRET}`).toString('base64');
+    const authUrl = 'https://oauth2.quran.foundation/oauth2/token';
+    const credentials = Buffer.from(`${process.env.QURAN_CLIENT_ID}:${process.env.QURAN_CLIENT_SECRET}`).toString('base64');
 
     const response = await axios.post(authUrl, 
       'grant_type=client_credentials&scope=content', 
@@ -31,13 +32,13 @@ async function getAccessToken() {
 // Get chapters from Quran API
 async function getChapters(token) {
   try {
-    const apiUrl = 'https://apis-prelive.quran.foundation/content/api/v4/chapters';
+    const apiUrl = 'https://apis.quran.foundation/content/api/v4/chapters';
 
     
     const response = await axios.get(apiUrl, {
       headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID,
+        'x-client-id': process.env.QURAN_CLIENT_ID,
         'Accept': 'application/json',
       }
     });
@@ -58,7 +59,7 @@ async function getChapterById(token, chapterId) {
      const response = await axios.get(apiUrl, {
        headers: {
           'x-auth-token': token,
-          'x-client-id': process.env.PRE_CLIENT_ID,
+          'x-client-id': process.env.QURAN_CLIENT_ID,
           'Accept': 'application/json'
        }
      });
@@ -76,13 +77,13 @@ async function getChapterById(token, chapterId) {
 // get verses by chapter ID
 async function getVerses(token, chapterId) {
   try {
-    const apiUrl = `https://apis-prelive.quran.foundation/content/api/v4/verses/by_chapter/${chapterId}`;
+    const apiUrl = `https://apis.quran.foundation/content/api/v4/verses/by_chapter/${chapterId}`;
     
 
     const response = await axios.get(apiUrl, {
       headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID,
+        'x-client-id': process.env.QURAN_CLIENT_ID,
         'Accept': 'application/json',
       }
     });
@@ -104,7 +105,7 @@ async function getUthmani(token) {
     const response = await axios.get(apiUrl, {
       headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID
+        'x-client-id': process.env.QURAN_CLIENT_ID
       }
     })
 
@@ -133,7 +134,7 @@ async function getUthmaniById(token, surahId) {
 
       headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID
+        'x-client-id': process.env.QURAN_CLIENT_ID
       }
     })
 
@@ -159,7 +160,7 @@ async function getUthmaniTajweed(token, surahId){
 
       headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID
+        'x-client-id': process.env.QURAN_CLIENT_ID
       }
     })
 
@@ -176,7 +177,7 @@ async function getUthmaniTajweed(token, surahId){
 async function getTranslations(token, surahId){
   try {
     
-    const TRANSLATION_ID = 131; // English - Saheeh International
+    const TRANSLATION_ID = 20; // English - Saheeh International
     const apiUrl = `${API_BASE_URL}/quran/translations/${TRANSLATION_ID}`;
 
     const response = await axios.get(apiUrl, {
@@ -185,7 +186,7 @@ async function getTranslations(token, surahId){
       },
       headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID
+        'x-client-id': process.env.QURAN_CLIENT_ID
       }
     })
 
@@ -208,7 +209,7 @@ async function getRecitations(token){
     const response = await axios.get(apiUrl, {
        headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID
+        'x-client-id': process.env.QURAN_CLIENT_ID
        }
     })
 
@@ -230,7 +231,7 @@ async function getRecitationById(token, recitation_id){
     const response = await axios.get(apiUrl,{
       headers: {
         'x-auth-token': token,
-        'x-client-id': process.env.PRE_CLIENT_ID
+        'x-client-id': process.env.QURAN_CLIENT_ID
       }
     })
 
