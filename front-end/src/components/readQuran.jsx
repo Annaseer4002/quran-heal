@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import quranCover from "../assets/Read.png"
-import apiUrl from "../utils/api"
 
 export function ReadQuran() {
 	const [chapters, setChapters] = useState([])
@@ -16,7 +15,7 @@ export function ReadQuran() {
 				setLoading(true)
 				setError("")
 
-				const response = await fetch(apiUrl("/api/chapters"), {
+				const response = await fetch("https://quran-server-zbx4.onrender.com/api/chapters", {
 					signal: controller.signal,
 				})
 
