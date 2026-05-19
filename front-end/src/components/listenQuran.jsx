@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
+import apiUrl from "../utils/api"
 
 export function ListenQuran() {
 	const [audioFiles, setAudioFiles] = useState([])
@@ -16,8 +17,8 @@ export function ListenQuran() {
 				setError("")
 
 				const [recitationsResponse, chaptersResponse] = await Promise.all([
-					fetch("/api/recitations", { signal: controller.signal }),
-					fetch("/api/chapters", { signal: controller.signal }),
+					fetch(apiUrl("/api/recitations"), { signal: controller.signal }),
+					fetch(apiUrl("/api/chapters"), { signal: controller.signal }),
 				])
 
 				if (!recitationsResponse.ok) {

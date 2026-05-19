@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Header } from "../components/header"
 import { Footer } from "../components/footer"
+import apiUrl from "../utils/api"
 
 // Helper function to strip HTML tags
 function stripHtmlTags(html) {
@@ -25,7 +26,7 @@ export function ChapterDetail() {
 				setError("")
 
 				// Fetch chapter metadata
-				const chapterRes = await fetch(`/api/chapter/${chapterId}`, {
+				const chapterRes = await fetch(apiUrl(`/api/chapter/${chapterId}`), {
 					signal: controller.signal,
 				})
 
@@ -41,7 +42,7 @@ export function ChapterDetail() {
 				setChapter(chapterInfo)
 
 				// Fetch verses (Arabic text)
-				const versesRes = await fetch(`/api/uthmani-tajweed/${chapterId}`, {
+				const versesRes = await fetch(apiUrl(`/api/uthmani-tajweed/${chapterId}`), {
 					signal: controller.signal,
 				})
 
@@ -57,7 +58,7 @@ export function ChapterDetail() {
 						: []
 
 				// Fetch translations (English)
-				const translationsRes = await fetch(`/api/translations/${chapterId}`, {
+				const translationsRes = await fetch(apiUrl(`/api/translations/${chapterId}`), {
 					signal: controller.signal,
 				})
 
